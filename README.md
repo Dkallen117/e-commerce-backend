@@ -39,6 +39,6 @@ Combining the skills I learned with Express and MySQL, this application adds ano
 
 
 
-## License ![GitHub](https://img.shields.io/github/license/smcheah/e-commerce-backend)
+## License ![GitHub](https://img.shields.io/badge/License%3A-MIT-green.svg)
 
 MIT
