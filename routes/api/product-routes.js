@@ -3,46 +3,46 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 
 // The `/api/products` endpoint
 
-// get all products
+// GET all products
 router.get('/', async (req, res) => {
  
   try {
 
+    // find all product data
    const productData = await Product.findAll(
       
       {
 
+        // Include the following
         include:[
 
         {
           model: Category,
           attributes: ['category_name']
-
         },
         {
-
           model: Tag,
           attributes: ['tag_name']
-
         }
 
-         ] });
+         ]});
 
       res.status(200).json(productData);
     
   } catch (err) {
     
     console.log(err);
-      res.status(500).json(err);
+    res.status(500).json(err);
 
   }
 });
 
-// get one product
+// GET one product
 router.get('/:id', async (req, res) => {
  
   try {
 
+    // Find product based on id
    const productSingleData = await Product.findOne({
 
     where: {
@@ -50,37 +50,31 @@ router.get('/:id', async (req, res) => {
       id: req.params.id
 
     },
-      
-      
-
+        // Include the following
         include:[{
 
           model: Category,
           attributes: ['category_name']
-          
-
+        
         },
         {
-
           model: Tag,
           attributes: ['tag_name']
-
         }
-      ]
-
-      });
+      
+      ]});
 
       res.status(200).json(productSingleData);
     
   } catch (err) {
     
     console.log(err);
-      res.status(500).json(err);
+    res.status(500).json(err);
 
   }
 });
 
-// create new product
+// POST new product
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
@@ -112,7 +106,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// update product
+// PUT/update product
 router.put('/:id', async (req, res) => {
   // update product data
  try {
@@ -159,17 +153,19 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+// DELETE route
 router.delete('/:id',  async (req, res) => {
  
   try {
 
+    // DELETE product based on id
    const productDeleteData = await Product.destroy({
     where: {
       id: req.params.id
     }
   });
 
-
+  // If there's no product data, respond with this message
   if (!productDeleteData) {
     res.status(404).json({ message: 'No product found with that id!' });
     return;
@@ -180,7 +176,7 @@ router.delete('/:id',  async (req, res) => {
     } catch (err) {
     
       console.log(err);
-        res.status(500).json(err);
+      res.status(500).json(err);
   
     }
 

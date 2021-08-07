@@ -3,6 +3,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
 
+// GET all tags
 router.get('/', async (req, res) => {
  
   try {
@@ -25,15 +26,17 @@ router.get('/', async (req, res) => {
   } catch (err) {
     
     console.log(err);
-      res.status(500).json(err);
+    res.status(500).json(err);
 
   }
 });
 
+// GET one tag
 router.get('/:id', async (req, res) => {
  
   try {
 
+    // Find tag based on id
    const tagSingleData = await Tag.findOne({
 
     where: {
@@ -42,13 +45,11 @@ router.get('/:id', async (req, res) => {
 
     },
       
-      
-
+    // Include the following
         include:{
 
           model: Product,
           
-
         }
 
       });
@@ -63,20 +64,19 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// POST new tag
 router.post('/', async (req, res) => {
  
   try {
 
+    // Create tag based on name
    const tagCreateData = await Tag.create({
-
 
     tag_name: req.body.tag_name
 
    });
       
-      
-
-      res.status(200).json(tagCreateData);
+    res.status(200).json(tagCreateData);
     
   } catch (err) {
     
@@ -86,10 +86,12 @@ router.post('/', async (req, res) => {
   }
 });
 
+// PUT/update tag
 router.put('/:id', async (req, res) => {
  
   try {
 
+    // Update tag name based on id
    const tagUpdateData = await Tag.update(
       
       {
@@ -107,6 +109,7 @@ router.put('/:id', async (req, res) => {
 
       });
 
+      // If there's no tag data, respond with this message
       if (!tagUpdateData) {
         res.status(404).json({ message: 'No tag found with that id!' });
         return;
@@ -117,22 +120,26 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     
     console.log(err);
-      res.status(500).json(err);
+    res.status(500).json(err);
 
   }
 });
 
+// DELETE route
 router.delete('/:id', async (req, res) => {
  
   try {
 
+    // Destroy tag based on id
    const tagDeleteData = await Tag.destroy({
     where: {
+    
       id: req.params.id
+
     }
   });
 
-
+  // If there's no tag data, respond with this message
   if (!tagDeleteData) {
     res.status(404).json({ message: 'No tag found with that id!' });
     return;
@@ -143,7 +150,7 @@ router.delete('/:id', async (req, res) => {
     } catch (err) {
     
       console.log(err);
-        res.status(500).json(err);
+      res.status(500).json(err);
   
     }
 });
