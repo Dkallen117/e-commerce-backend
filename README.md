@@ -1,4 +1,19 @@
-# e-commerce-backend ![GitHub top language](https://img.shields.io/github/languages/top/Dkallen117/e-commerce-backend)
+# e-commerce-backend 
+
+<p align="center">
+    <img src="https://img.shields.io/github/repo-size/Dkallen117/e-commerce-backend" />
+    <img src="https://img.shields.io/github/languages/top/Dkallen117/e-commerce-backend"  />
+    <img src="https://img.shields.io/github/issues/Dkallen117/e-commerce-backend" />
+    <img src="https://img.shields.io/github/last-commit/Dkallen117/e-commerce-backend" >
+</p>
+  
+<p align="center">
+    <img src="https://img.shields.io/badge/Javascript-yellow" />
+    <img src="https://img.shields.io/badge/express-orange" />
+    <img src="https://img.shields.io/badge/Sequelize-blue"  />
+    <img src="https://img.shields.io/badge/mySQL-blue"  />
+    <img src="https://img.shields.io/badge/dotenv-green" />
+</p>
 
 ## Description 
 
